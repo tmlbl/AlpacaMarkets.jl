@@ -20,7 +20,7 @@ function bars(symbol::Symbol, start::DateTime, timeframe::String)
     resp = request(client, "/v2/stocks/$symbol/bars", Dict{String,String}(
         "start" => "$(start)Z",
         "timeframe" => "$timeframe",
-    ); base="https://data.alpaca.markets")
+    ); base=APCA_DATA_API_URL)
     bars2series(JSON.parse(String(resp.body)))
 end
 
@@ -43,7 +43,7 @@ end
 Gets the most recent trade for the given symbol
 """
 function latest(s::Symbol)
-    resp = request(c, "/v2/stocks/$s/trades/latest"; base="https://data.alpaca.markets")
+    resp = request(client, "/v2/stocks/$s/trades/latest"; base=APCA_DATA_API_URL)
     js = JSON.parse(String(resp.body))
     js["trade"]["t"] = js["trade"]["t"][1:23]
     unmarshal(TradeInfo, js)

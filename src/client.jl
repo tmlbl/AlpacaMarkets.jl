@@ -2,6 +2,13 @@ const APCA_PAPER_API_URL = "https://paper-api.alpaca.markets"
 const APCA_LIVE_API_URL = "https://api.alpaca.markets"
 const APCA_DATA_API_URL = "https://data.alpaca.markets"
 
+function getbaseurl()
+    if !haskey(ENV, "APCA_ENV") || ENV["APCA_ENV"] != "live"
+        return APCA_PAPER_API_URL
+    end
+    APCA_LIVE_API_URL
+end
+
 struct Client
     key_id::String
     secret_key::String

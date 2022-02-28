@@ -3,7 +3,9 @@ module AlpacaMarkets
 export Client,
        getaccount,
        bars,
-       latest
+       latest,
+       getasset,
+       getassets
 
 using HTTP,
       URIs,
@@ -20,5 +22,6 @@ Unmarshal.Int64(s::String) = parse(Int64, s)
 include("client.jl")
 include("accounts.jl")
 include("data.jl")
+include("assets.jl")
 
 end # module
