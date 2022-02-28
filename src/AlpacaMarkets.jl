@@ -2,7 +2,7 @@ module AlpacaMarkets
 
 export Client,
        getaccount,
-       bars,
+       ohlc,
        latest,
        getasset,
        getassets

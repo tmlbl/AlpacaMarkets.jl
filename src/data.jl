@@ -10,13 +10,13 @@ function bars2series(js::Dict{String,Any})
         values[i, 5] = b["v"]
     end
 
-    TimeArray(times, values, Symbol[:open, :high, :low, :close, :volume])    
+    TimeArray(times, values, Symbol[:Open, :High, :Low, :Close, :Volume], js["symbol"])
 end
 
 """
 Retrieve candle-format historical data for a symbol
 """
-function bars(symbol::Symbol, start::DateTime, timeframe::String)
+function ohlc(symbol::Symbol, start::DateTime, timeframe::String)
     resp = request(client, "/v2/stocks/$symbol/bars", Dict{String,String}(
         "start" => "$(start)Z",
         "timeframe" => "$timeframe",
