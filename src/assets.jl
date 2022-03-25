@@ -22,7 +22,7 @@ end
 Get a list of assets
 """
 function getassets()
-    resp = request(client, "/v2/assets"; base=APCA_PAPER_API_URL)
+    resp = request(client, "/v2/assets")
     js = JSON.parse(String(resp.body))
     unmarshal(Vector{Asset}, js)
 end
@@ -31,7 +31,7 @@ end
 Get an individual asset
 """
 function getasset(symbol::Symbol)
-    resp = request(client, "/v2/assets/$symbol"; base=APCA_PAPER_API_URL)
+    resp = request(client, "/v2/assets/$symbol")
     js = JSON.parse(String(resp.body))
     unmarshal(Asset, js)
 end

@@ -26,7 +26,7 @@ function headers(c::Client)
 end
 
 function request(c::Client, resource::String,
-    params::Dict{String,String}; verb="GET", base=APCA_PAPER_API_URL)
+    params::Dict{String,String}; verb="GET", base=getbaseurl(), body="")
 
     uri = string(base, resource)
     if length(params) > 0
@@ -35,9 +35,9 @@ function request(c::Client, resource::String,
 
     println("$verb $uri")
 
-    return HTTP.request(verb, uri; headers=headers(c))
+    return HTTP.request(verb, uri, headers(c), body)
 end
 
-function request(c::Client, resource::String; verb="GET", base=APCA_PAPER_API_URL)
+function request(c::Client, resource::String; verb="GET", base=getbaseurl())
     return request(c, resource, Dict{String,String}(); verb=verb, base=base)
 end

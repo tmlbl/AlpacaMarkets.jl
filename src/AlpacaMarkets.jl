@@ -5,7 +5,9 @@ export Client,
        ohlc,
        latest,
        getasset,
-       getassets
+       getassets,
+       Order,
+       placeorder
 
 using HTTP,
       URIs,
@@ -23,5 +25,6 @@ include("client.jl")
 include("accounts.jl")
 include("data.jl")
 include("assets.jl")
+include("orders.jl")
 
 end # module
