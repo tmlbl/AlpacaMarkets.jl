@@ -7,6 +7,10 @@ export Client,
        getasset,
        getassets,
        Order,
+       OrderSide,
+       OrderType,
+       OrderInfo,
+       MarketBuy,
        placeorder
 
 using HTTP,

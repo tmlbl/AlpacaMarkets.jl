@@ -45,6 +45,7 @@ Gets the most recent trade for the given symbol
 function latest(s::Symbol)
     resp = request(client, "/v2/stocks/$s/trades/latest"; base=APCA_DATA_API_URL)
     js = JSON.parse(String(resp.body))
+    # Truncate the timestamp to get it to parse
     js["trade"]["t"] = js["trade"]["t"][1:23]
     unmarshal(TradeInfo, js)
 end
